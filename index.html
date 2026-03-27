@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Happy 14th Birthday Nidhiya! 🎂</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'script': ['"Dancing Script"', 'cursive'],
+                        'sans': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'pop-in': 'popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        'laser-move': 'laserMove 2s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        glow: { 'from': { textShadow: '0 0 10px #fff, 0 0 20px #ff0000' }, 'to': { textShadow: '0 0 20px #fff, 0 0 30px #ff0000' } },
+                        popIn: { '0%': { transform: 'scale(0.5)', opacity: '0' }, '100%': { transform: 'scale(1)', opacity: '1' } },
+                        laserMove: { 
+                            '0%': { top: '0%' }, 
+                            '50%': { top: '100%' },
+                            '100%': { top: '0%' } 
+                        },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+        body { 
+            margin: 0; height: 100vh; width: 100vw; overflow: hidden; position: fixed; 
+            background: #1a0505; display: flex; align-items: center; justify-content: center; 
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(220, 38, 38, 0.4) 0%, transparent 50%), 
+                radial-gradient(at 100% 100%, rgba(153, 27, 27, 0.4) 0%, transparent 50%), 
+                radial-gradient(at 50% 50%, #1a0505 0%, #000000 100%); 
+        }
+        
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.04); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            z-index: 10; border-radius: 3.5rem; padding: 2.5rem; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            max-width: 320px; width: 92%;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card.final-glow {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.75), rgba(153, 27, 27, 0.85));
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 60px rgba(220, 38, 38, 0.8), 0 0 120px rgba(220, 38, 38, 0.3);
+            backdrop-filter: blur(35px);
+            transform: scale(1.05);
+        }
+
+        .popup-box { 
+            position: fixed; z-index: 200; display: none; width: 85%; max-width: 280px; 
+            padding: 2rem; border-radius: 2.5rem; text-align: center; color: #450a0a; 
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6); border: 2px solid rgba(255, 255, 255, 0.9); 
+            left: 50%; top: 50%; transform: translate(-50%, -50%);
+        }
+        
+        #popup-1 { background: linear-gradient(135deg, #fecaca, #fca5a5); }
+        #popup-2 { background: linear-gradient(135deg, #fee2e2, #f87171); }
+        #popup-3 { background: linear-gradient(135deg, #fef2f2, #ef4444); }
+        #popup-4 { background: #000; color: white; border-color: #ef4444; }
+        #popup-5 { background: linear-gradient(135deg, #fff1f2, #be123c); color: white; }
+        #popup-6 { background: linear-gradient(135deg, #fca5a5, #991b1b); color: white; }
+        #popup-7 { background: linear-gradient(135deg, #ef4444, #7f1d1d); color: white; }
+        
+        .popup-btn { 
+            width: 100%; background: white; padding: 0.9rem; border-radius: 1.2rem; 
+            font-weight: 800; font-size: 0.75rem; margin-top: 1.2rem; color: #991b1b; 
+            text-transform: uppercase; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .camera-container { 
+            position: relative; width: 180px; height: 180px; margin: 0 auto 1.5rem; 
+            border: 3px solid #ef4444; border-radius: 1.5rem; overflow: hidden; 
+            background: #000; box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+        }
+        
+        #webcam { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); opacity: 0.8; }
+        
+        .laser-line { 
+            position: absolute; left: 0; width: 100%; height: 3px; background: #ff0000; 
+            box-shadow: 0 0 12px #ff0000, 0 0 5px #ffffff; z-index: 10; 
+            animation: laserMove 2s linear infinite; pointer-events: none;
+        }
+
+        .scan-overlay {
+            position: absolute; inset: 0; 
+            background: repeating-linear-gradient(0deg, rgba(255,0,0,0.05) 0px, rgba(255,0,0,0.05) 1px, transparent 1px, transparent 2px);
+            z-index: 4; pointer-events: none;
+        }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px); z-index: 150; display: none; }
+        .hidden-message { display: none; color: white; }
+        .show-message { display: block !important; animation: fadeIn 0.8s ease-out forwards; }
+        
+        .floating-heart { position: absolute; color: rgba(220, 38, 38, 0.4); font-size: 2.5rem; pointer-events: none; z-index: 1; }
+        
+        .verifying-text { font-family: monospace; color: #ef4444; font-size: 11px; margin-top: 5px; text-transform: uppercase; letter-spacing: 1.5px; }
+    </style>
+</head>
+<body class="font-sans">
+
+    <div class="floating-heart animate-float" style="top: 10%; left: 5%;">❤️</div>
+    <div class="floating-heart animate-float" style="top: 85%; left: 15%; animation-delay: 1s;">🌹</div>
+    <div class="floating-heart animate-float" style="top: 20%; left: 85%; animation-delay: 2s;">🎈</div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <main id="main-card" class="glass-card animate-fade-in text-center">
+        <div id="main-content">
+            <span class="inline-block bg-red-900/40 text-red-400 font-bold px-4 py-1 rounded-full text-[10px] tracking-widest uppercase mb-4 border border-red-500/30">March 30th</span>
+            <h1 class="font-script text-5xl text-white leading-tight">Happy 14th!</h1>
+            <h2 class="text-xl font-semibold text-red-500 mt-1">Nidhiya Majo</h2>
+            <p class="font-script text-2xl text-red-300 animate-pulse mt-2">Pretty Face</p>
+            
+            <div class="flex justify-center items-center space-x-2 my-8 opacity-60">
+                <div class="h-[1px] bg-red-500/40 w-12"></div>
+                <div class="text-red-600 text-[14px]">❤</div>
+                <div class="h-[1px] bg-red-500/40 w-12"></div>
+            </div>
+
+            <button id="reveal-btn" class="w-full py-5 font-extrabold text-white bg-gradient-to-br from-red-700 via-red-600 to-red-900 rounded-[2rem] text-[11px] tracking-widest uppercase shadow-[0_10px_30px_rgba(220,38,38,0.4)] active:scale-95 transition-all">
+                Unlock The Truth 🔓
+            </button>
+        </div>
+
+        <div id="secret-message" class="hidden-message text-left">
+            <h2 class="font-script text-4xl text-white mb-6">The Truth... 🧿</h2>
+            <div class="space-y-6">
+                <p class="text-white/90 text-[1rem] font-medium leading-relaxed">Nidhiya, I couldn't let today pass without being 100% real with you.</p>
+                <p class="font-bold text-white text-[1.4rem] animate-glow leading-tight italic">
+                    "I love you and I'm straight (seb is just a side chick) and I never thought that chechi from the college was hot."
+                </p>
+            </div>
+            <div class="mt-12 pt-6 border-t border-white/20 text-white/50 text-[10px] tracking-widest uppercase">
+                Only yours, <span class="block font-script text-5xl text-white mt-2 tracking-normal">Richard</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Interactive Popups -->
+    <div id="popup-1" class="popup-box"><div class="text-4xl mb-3">✨</div><p class="text-sm font-bold">Spent a lot of late nights coding this just for you. Hope it's worth it.</p><button onclick="nextPopup(1)" class="popup-btn">You did this for me? 🥺</button></div>
+    <div id="popup-2" class="popup-box"><div class="text-4xl mb-3">🌹</div><p class="text-sm font-bold">A simple message wasn't enough for someone like you.</p><button onclick="nextPopup(2)" class="popup-btn">What makes me so unique? 🙈</button></div>
+    <div id="popup-3" class="popup-box"><div class="text-4xl mb-3">🦋</div><p class="text-sm font-bold">I notice the details about you that others might overlook.</p><button onclick="nextPopup(3)" class="popup-btn">Like what? ✨</button></div>
+    
+    <!-- BIO-SCANNER POPUP -->
+    <div id="popup-4" class="popup-box">
+        <div class="camera-container">
+            <div class="laser-line"></div>
+            <div class="scan-overlay"></div>
+            <video id="webcam" autoplay playsinline muted></video>
+        </div>
+        <p class="text-sm font-bold">BIO-METRIC LOCK: Verification Required. Center your Pretty Face to continue.</p>
+        <div id="scan-status" class="verifying-text">Waiting for lens...</div>
+        <button id="start-scan-btn" onclick="startCamera()" class="popup-btn">Start Face Scan 🤳</button>
+        <button id="scan-proceed-btn" style="display:none;" class="popup-btn">Processing...</button>
+    </div>
+
+    <div id="popup-5" class="popup-box"><div class="text-4xl mb-3">🤫</div><p class="text-sm font-bold">Identity Confirmed: Pretty Face Detected. Ready for some honesty?</p><button onclick="nextPopup(5)" class="popup-btn">What are you hiding? 🧐</button></div>
+    <div id="popup-6" class="popup-box"><div class="text-4xl mb-3">🔮</div><p class="text-sm font-bold">About Seb, about that Chechi at college... I need to clear the air.</p><button onclick="nextPopup(6)" class="popup-btn">Finally the truth? 😂</button></div>
+    <div id="popup-7" class="popup-box"><div class="text-4xl mb-3">🧿</div><p class="text-sm font-bold">Last step. No filters. Ready to see the real vision?</p><button onclick="finalReveal()" class="popup-btn">Show me the truth! 💌</button></div>
+
+    <script>
+        const revealBtn = document.getElementById('reveal-btn');
+        const mainContent = document.getElementById('main-content');
+        const secretMessage = document.getElementById('secret-message');
+        const overlay = document.getElementById('overlay');
+        const mainCard = document.getElementById('main-card');
+        const webcamElement = document.getElementById('webcam');
+        const scanStatus = document.getElementById('scan-status');
+        const startScanBtn = document.getElementById('start-scan-btn');
+        const scanProceedBtn = document.getElementById('scan-proceed-btn');
+
+        let stream = null;
+
+        function positionRandomly(el) {
+            const pad = 25;
+            const screenW = window.innerWidth;
+            const screenH = window.innerHeight;
+            const elW = el.offsetWidth || 280;
+            const elH = el.offsetHeight || 380;
+            const maxX = Math.max(0, screenW - elW - (pad * 2));
+            const maxY = Math.max(0, screenH - elH - (pad * 2));
+            const x = Math.max(pad, Math.floor(Math.random() * maxX) + pad);
+            const y = Math.max(pad, Math.floor(Math.random() * maxY) + pad);
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            el.style.transform = 'none';
+        }
+
+        revealBtn.addEventListener('click', () => {
+            overlay.style.display = 'block';
+            const p1 = document.getElementById('popup-1');
+            p1.style.display = 'block';
+            positionRandomly(p1);
+        });
+
+        async function startCamera() {
+            startScanBtn.style.display = 'none';
+            scanStatus.innerText = "Accessing System...";
+            
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+                webcamElement.srcObject = stream;
+                scanStatus.innerText = "Analyzing Biometrics...";
+                
+                setTimeout(() => {
+                    scanStatus.innerText = "MATCH FOUND: 100% PRETTY";
+                    scanStatus.style.color = "#4ade80";
+                    scanProceedBtn.style.display = 'block';
+                    scanProceedBtn.innerText = "Access Granted";
+                    scanProceedBtn.onclick = () => { stopCamera(); nextPopup(4); };
+                }, 3500);
+
+            } catch (err) {
+                scanStatus.innerText = "Camera Denied. Manual Override.";
+                startScanBtn.style.display = 'block';
+                startScanBtn.innerText = "Manual Verification";
+                startScanBtn.onclick = () => nextPopup(4);
+            }
+        }
+
+        function stopCamera() {
+            if (stream) stream.getTracks().forEach(track => track.stop());
+        }
+
+        function nextPopup(n) {
+            document.getElementById(`popup-${n}`).style.display = 'none';
+            const nextPop = document.getElementById(`popup-${n + 1}`);
+            if (nextPop) {
+                nextPop.style.display = 'block';
+                positionRandomly(nextPop);
+            }
+        }
+
+        function finalReveal() {
+            document.getElementById('popup-7').style.display = 'none';
+            overlay.style.display = 'none';
+            mainContent.style.display = 'none';
+            mainCard.classList.add('final-glow');
+            secretMessage.classList.add('show-message');
+        }
+    </script>
+</body>
+  </html>
